@@ -3,24 +3,15 @@
 from __future__ import print_function
 import os
 import subprocess
+import shared
 
 
 __version__ = "1.0"
 
-def run_command(cmd):
-    """Run executable and return output"""
-
-    try:
-        proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except OSError, e:
-        print("Error running {}: {}".format(cmd, e))
-
-    return proc.stdout.readlines()
-
 def get_listening_services():
     """Return set of networking listening services"""
 
-    netstat = run_command(['/bin/netstat', '-tlnp'])
+    netstat = shared.run_command(['/bin/netstat', '-tlnp'])
     listening_services = set()
 
     for line in netstat:
@@ -40,7 +31,7 @@ def get_systemd_enabled():
     systemd_enabled = []
 
     if os.path.isfile('/bin/systemctl'):
-        output = run_command(['systemctl', 'list-unit-files'])
+        output = shared.run_command(['systemctl', 'list-unit-files'])
 
         for unit in output:
             if "service" in unit and "enabled" in unit:
@@ -54,7 +45,7 @@ def get_sysv_enabled():
     sysv_enabled = []
 
     if os.path.isfile('/sbin/chkconfig'):
-        output = run_command(['chkconfig', '--list'])
+        output = shared.run_command(['chkconfig', '--list'])
 
         for line in output:
             if "3:on" in line:
