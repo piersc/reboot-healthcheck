@@ -8,7 +8,7 @@ import sys
 
 
 def load_modules():
-    """Import (i.e. run) all modules, and return list of them"""
+    """Import modules, and return list of them"""
 
     sys.path.append("./modules")
     modules = [f.split(".py")[0] for f in listdir("modules") if isfile(join("modules", f))]
