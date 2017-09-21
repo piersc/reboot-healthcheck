@@ -4,6 +4,7 @@ from __future__ import print_function
 import os
 import subprocess
 import shared
+from shared import print_msg
 
 
 __version__ = "1.0"
@@ -62,9 +63,9 @@ def compare_listening_to_enabled(listening, enabled):
         if l in service_map:
             l = service_map[l]
         if l in enabled:
-            print("OK! {0} running and enabled".format(l))
+            print_msg("{0} running and enabled".format(l), "OK")
         else:
-            print("CHECK! {0} running but not enabled".format(l))
+            print_msg("{0} running but not enabled".format(l), "WARN")
 
 
 listening_services = get_listening_services()

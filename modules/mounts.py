@@ -4,6 +4,7 @@ from __future__ import print_function
 import os
 import subprocess
 import shared
+from shared import print_msg
 
 
 __version__ = "1.0"
@@ -39,9 +40,9 @@ def get_fstab():
 def compare_mounts(current, fstab):
     for mount in current:
         if mount in fstab:
-            print("OK! {0} {1} in fstab".format(mount[0], mount[1]))
+            print_msg("{0} {1} in fstab".format(mount[0], mount[1]), "OK")
         else:
-            print("CHECK! {0} {1} not in fstab".format(mount[0], mount[1]))
+            print_msg("{0} {1} not in fstab".format(mount[0], mount[1]), "WARN")
 
 mounts = get_mounts()
 fstab = get_fstab()
