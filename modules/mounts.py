@@ -27,7 +27,7 @@ def get_fstab():
     """Parse fstab for filesystems that get mounted at boot time"""
 
     fstabmounts = open("/etc/fstab").readlines()
-    fstabentries = [(f.split()[0], f.split()[1]) for f in fstabmounts if not f.split()[0].startswith("#") and len(f) > 2 ]
+    fstabentries = [(f.split()[0], f.split()[1]) for f in fstabmounts if len(f) > 2 and not f.split()[0].startswith("#")]
 
     # Convert UUIDs to block devices
     for i, v in enumerate(fstabentries):
