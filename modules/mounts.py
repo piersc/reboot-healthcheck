@@ -15,7 +15,9 @@ def get_mounts():
     # Ignore these mount device types
     ignore = [ "cgroup", "sysfs", "securityfs", "devpts", "udev", "proc", 
                "pstore", "efivarfs", "systemd-1", "mqueue", "hugetlbfs",
-               "debugfs", "fusectl", "tracefs", "gvfsd-fuse", "tmpfs" ]
+               "debugfs", "fusectl", "tracefs", "gvfsd-fuse", "tmpfs",
+               "rootfs", "selinuxfs", "none", "binfmt_misc", "devtmpfs",
+               "configfs" ]
 
     procmounts = open("/proc/mounts").readlines()
     return [(f.split()[0], f.split()[1]) for f in procmounts if f.split()[0] not in ignore]
