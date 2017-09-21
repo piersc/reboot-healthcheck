@@ -23,6 +23,7 @@ def get_mounts():
     procmounts = open("/proc/mounts").readlines()
     return [(f.split()[0], f.split()[1]) for f in procmounts if f.split()[0] not in ignore]
 
+# TODO currently this doesn't understand that /dev/mapper/vg-lv is the same as /dev/vg/lv
 def get_fstab():
     """Parse fstab for filesystems that get mounted at boot time"""
 
