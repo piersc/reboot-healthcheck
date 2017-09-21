@@ -4,7 +4,7 @@
 import subprocess
 
 
-def run_command(cmd):
+def run_command(cmd, return_retcode=False):
     """Run executable and return stdout output"""
 
     try:
@@ -12,7 +12,10 @@ def run_command(cmd):
     except OSError, e:
         print("Error running {}: {}".format(cmd, e))
 
-    return proc.stdout.readlines()
+    if return_retcode:
+        return (proc.communicate()[0], proc.returncode)
+    else:
+        return proc.stdout.readlines()
 
 def print_msg(msg, level):
     """Print message formatted based on level, OK, WARN, FAIL"""

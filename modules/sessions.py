@@ -20,4 +20,5 @@ def get_screen_tmux_sessions():
         except IOError: # proc has already terminated
             continue
 
-get_screen_tmux_sessions()
+def _run():
+    get_screen_tmux_sessions()

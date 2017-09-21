@@ -19,5 +19,9 @@ def list_modules(modules):
     print("\nRan these modules:")
     [print("- {0} {1}".format(m.__name__, m.__version__)) for m in modules]
 
+def run_modules(modules):
+    [module._run() for module in modules]
+
 plugins = load_modules()
+run_modules(plugins)
 list_modules(plugins)

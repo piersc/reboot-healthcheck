@@ -67,8 +67,8 @@ def compare_listening_to_enabled(listening, enabled):
         else:
             print_msg("{0} running but not enabled".format(l), "WARN")
 
-
-listening_services = get_listening_services()
-systemd_enabled = get_systemd_enabled()
-sysv_enabled = get_sysv_enabled()
-compare_listening_to_enabled(listening_services, systemd_enabled + sysv_enabled)
+def _run():
+    listening_services = get_listening_services()
+    systemd_enabled = get_systemd_enabled()
+    sysv_enabled = get_sysv_enabled()
+    compare_listening_to_enabled(listening_services, systemd_enabled + sysv_enabled)

@@ -44,6 +44,7 @@ def compare_mounts(current, fstab):
         else:
             print_msg("{0} {1} not in fstab".format(mount[0], mount[1]), "WARN")
 
-mounts = get_mounts()
-fstab = get_fstab()
-compare_mounts(mounts, fstab)
+def _run():
+    mounts = get_mounts()
+    fstab = get_fstab()
+    compare_mounts(mounts, fstab)
