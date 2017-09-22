@@ -10,7 +10,7 @@ def run_command(cmd, return_retcode=False):
     try:
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except OSError, e:
-        print("Error running {}: {}".format(cmd, e))
+        print("Error running {0}: {1}".format(cmd, e))
 
     if return_retcode:
         return (proc.communicate()[0], proc.returncode)
